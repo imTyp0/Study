@@ -1,7 +1,7 @@
 {
   "build": {
-    "devPath": "../src",
-    "distDir": "../src",
+    "devPath": "../src/",
+    "distDir": "../src/",
     "withGlobalTauri": true
   },
   "package": {
@@ -10,7 +10,7 @@
   },
   "tauri": {
     "allowlist": {
-      "all": false,
+      "all": true,
       "shell": {
         "all": false,
         "open": true
@@ -18,7 +18,7 @@
     },
     "windows": [
       {
-        "title": "study",
+        "title": "",
         "width": 800,
         "height": 600
       }
@@ -29,7 +29,7 @@
     "bundle": {
       "active": true,
       "targets": "all",
-      "identifier": "com.tauri.dev",
+      "identifier": ".deb",
       "icon": [
         "icons/32x32.png",
         "icons/128x128.png",

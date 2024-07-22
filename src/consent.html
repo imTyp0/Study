@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Consent</title>
+    <link href="consent.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Consent</h1>
+    <p>
+      Hello, I am a student in psychology. I am asking for your consent to participate in a brief math study.
+      Please read these instructions and feel free to ask any questions. Your data will be disguised as anonymous 
+      so that your identity cannot be revealed. No-one will be able to know your name or scores. Your results will be 
+      referred to by a numeric code. You may quit the study at any time if you are at all uncomfortable.
+    <ol>
+      <li>
+        You will be asked to listen to two songs and then click a keyboard letter that corresponds to a side (left or right) in which a specific image is shown.
+        If you choose to participate, please make sure you are using a computer with functioning keys.
+        <ol>
+          <li>
+            You will be informed of the specific predictions and background information after the study is completed, and if you have any questions, they will be gladly answered.
+          </li>
+          <li>
+            There are no known risks or expected benefits of participating in this study. However, if you are sensitive to image flashes, we advise that you do not take part in the study.
+          </li>
+        </ol>
+      </li>
+      <li>
+        There is no payment for your involvement and you can quit the study at any time.
+      </li>
+    </ol>
+      If at this time you wish to withdraw for the study, please click the button 'withdraw' on the left side of the screen. If not, click 'continue' on the right side of the screen
+    </p>
+    
+    <div>
+      <button id="withdraw">Withdraw</button>
+      <button onclick="location.href = 'instructions.html'">Continue</button>
+    </div>
+    
+    <script type="module">
+      document.getElementById("withdraw").addEventListener("click", () => {
+        window.__TAURI__.process.exit(0);
+      });
+    </script>
+  </body>
+</html>
