@@ -1,5 +1,5 @@
-// const { invoke } = window.__TAURI__.tauri;
-//
+const { invoke } = window.__TAURI__.tauri;
+
 // let greetInputEl;
 // let greetMsgEl;
 //
@@ -18,11 +18,18 @@
 // });
 const CODE_REGEX = new RegExp("S([1-2]0|31)\\d+");
 
-let code_submit_button = document.querySelector(".codeSubmit");
-code_submit_button.addEventListener("click", (e) => {
+async function storeCode(){
+  // TODO store the code server side using Commands
   let code = document.querySelector(".codeInput").value;
   
   if (CODE_REGEX.test(code)){
+    await console.log("Here")
+    await invoke("store", {
+      code: code,
+      timeAfterVideos: null,
+      flashes: null,
+      timeAfterFlashes: null
+    }).then(resp => {console.log(resp)}).catch(e => {console.error(e)});
     window.location.href = "consent.html";
   }
   else{
@@ -30,4 +37,4 @@ code_submit_button.addEventListener("click", (e) => {
 
     error_text.style.visibility = "visible";
   }
-});
+}
