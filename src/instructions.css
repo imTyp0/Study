@@ -23,14 +23,3 @@ body{
   justify-content: center;
   align-items: center;
 }
-
-button{
-  width: 30%;
-  height: 40%;
-}
-
-div{
-  width: 40%;
-  display: flex;
-  justify-content: space-between;
-}

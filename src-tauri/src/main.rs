@@ -25,11 +25,10 @@ struct Flash{
 fn store(
     code: Option<String>, time_after_videos: Option<u128>, flashes: Option<Vec<Flash>>, time_after_flashes: Option<u128>
 ){
-    println!("Function called!");
     let mut filp = OpenOptions::new()
         .create(true)
         .append(true)
-        .open("data.txt")
+        .open("study_data.json")
         .expect("Failed to open file");
     
     if let Some(code) = code{
@@ -52,13 +51,12 @@ fn store(
 
 #[tauri::command]
 fn del_record(){
-    remove_file("data.txt").expect("Failed to delete data.txt")
+    remove_file("study_data.json").expect("Failed to delete data file")
 }
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![store])
-        .invoke_handler(tauri::generate_handler![del_record])
+        .invoke_handler(tauri::generate_handler![store, del_record])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

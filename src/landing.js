@@ -23,7 +23,6 @@ async function storeCode(){
   let code = document.querySelector(".codeInput").value;
   
   if (CODE_REGEX.test(code)){
-    await console.log("Here")
     await invoke("store", {
       code: code,
       timeAfterVideos: null,
