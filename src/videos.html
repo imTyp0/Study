@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="videos.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="videoContainer">
+      <iframe src="https://www.youtube.com/watch?v=jVLsLT6cvJ4" title="First video"></iframe>
+      <iframe src="https://www.youtube.com/watch?v=3ESGjxMVpqk" title="Second video"></iframe>
+    </div>
+    <p>Please only click 'continue' once you are ready to begin the study</p>
+    <button>Continue</button>
+  </body>
+  <script type="module">
+    // window.__TAURI__.invoke()
+    document.querySelector("button").addEventListener("click", () =>{
+      const date = new Date();
+      window.__TAURI__.invoke("store", {
+        code: null,
+        timeAfterVideos: date.getTime(),
+        flashes: null,
+        timeAfterFlashes: null
+      });
+      location.href = "flashes.html";
+    });
+  </script>
+</html>
