@@ -8,14 +8,37 @@
   </head>
   <body>
     <div class="videoContainer">
-      <iframe src="https://www.youtube.com/watch?v=jVLsLT6cvJ4" title="First video"></iframe>
-      <iframe src="https://www.youtube.com/watch?v=3ESGjxMVpqk" title="Second video"></iframe>
+      <div id="1"></div>
+      <div id="2"></div>
     </div>
     <p>Please only click 'continue' once you are ready to begin the study</p>
     <button>Continue</button>
   </body>
+  <script>
+    var tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName("script")[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    function onYouTubeIframeAPIReady(){
+      new YT.Player("1", {
+        videoId: "dqQ_QAcHgM8",
+        playerVars: {
+          "autoplay": 0,
+          "controls": 1
+        }
+      });
+
+      new YT.Player("2", {
+        videoId: "3ESGjxMVpqk",
+        playerVars: {
+          "autoplay": 0,
+          "controls": 1
+        }
+      });
+    }
+  </script>
   <script type="module">
-    // window.__TAURI__.invoke()
     document.querySelector("button").addEventListener("click", () =>{
       const date = new Date();
       window.__TAURI__.invoke("store", {
