@@ -1,5 +1,17 @@
 {
-	code: "S314",
-
-	time_after_videos: "1721912876337",
-
+	"code": "S314",
+	"time_after_videos": 1722126962510,
+	"flashes": [
+		{"time": 378, "right": true},
+		{"time": 294, "right": false},
+		{"time": 328, "right": true},
+		{"time": 3842, "right": false},
+		{"time": 453, "right": true},
+		{"time": 345, "right": true},
+		{"time": 350, "right": true},
+		{"time": 388, "right": true},
+		{"time": 260, "right": true},
+		{"time": 196, "right": false}
+	],
+	"time_after_flashes": 1722126990278
+}

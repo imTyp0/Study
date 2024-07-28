@@ -24,3 +24,24 @@ body{
   align-items: center;
 }
 
+.flashesWrapper{
+  width: 80%;
+  height: 70vh;
+  
+  margin-top: 10%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.flash{
+  height: 100%;
+  width: 40%;
+
+  background: #fff;
+  visibility: hidden;
+}
+
+p{
+  font-size: 1.9em;
+}

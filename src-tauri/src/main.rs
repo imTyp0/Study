@@ -15,7 +15,6 @@ use std::io::Write;
 
 #[derive(serde::Deserialize)]
 struct Flash{
-    num: u8,
     time: u128,
     right: bool
 }
@@ -32,20 +31,27 @@ fn store(
         .expect("Failed to open file");
     
     if let Some(code) = code{
-        writeln!(filp, "{{\n\tcode: \"{}\",\n", code).expect("Failed to write code");
+        writeln!(filp, "{{\n\t\"code\": \"{}\",", code).expect("Failed to write code");
     }
     else if let Some(tav) = time_after_videos{
-        writeln!(filp, "\ttime_after_videos: \"{}\",\n", tav).expect("Failed to write time_after_videos");
+        writeln!(filp, "\t\"time_after_videos\": {},", tav).expect("Failed to write time_after_videos");
     }
     else if let Some(flashes) = flashes{
-        writeln!(filp, "\tflashes: [\n").expect("Failed to write flashes start");
-        for flash in flashes{
-           writeln!(filp, "\t\t{}: {{{}, {}}},\n", flash.num, flash.time, flash.right).expect("failed to write a flash"); 
-        }
-        writeln!(filp, "],\n").expect("Failed to write flashes end");
+        writeln!(filp, "\t\"flashes\": [").expect("Failed to write flashes start");
+        flashes.iter().enumerate().for_each(|(n, flash)|{
+            // If it's not the last flash
+            if n != flashes.len() - 1{
+                writeln!(filp, "\t\t{{\"time\": {}, \"right\": {}}},", flash.time, flash.right).expect("failed to write a flash");
+            }
+            else{
+                writeln!(filp, "\t\t{{\"time\": {}, \"right\": {}}}", flash.time, flash.right).expect("failed to write a flash");
+            }
+        });
+        
+        writeln!(filp, "\t],").expect("Failed to write flashes end");
     }
-    else if let Some(taf) = time_after_flashes{
-        writeln!(filp, "\t{}\n}}", taf).expect("Failed writing time_after_flashes");
+    if let Some(taf) = time_after_flashes{
+        writeln!(filp, "\t\"time_after_flashes\": {}\n}}", taf).expect("Failed writing time_after_flashes");
     }
 }
 
